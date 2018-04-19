@@ -54,12 +54,15 @@ document.onkeyup = function (event) {
         document.getElementById("clickToStart").innerHTML = drake.join(" ")
 
     }
-    
+    if ((drake[0] === "D") && (drake[1] === "R") && (drake[2] === "A") && (drake[3] === "K") && (drake[4] === "E")) {
+        alert("YOU WON!")
+    }
     else {
         lettersGuessed.push(event.key);
         document.getElementById("lettersGuessedSection").innerHTML = lettersGuessed;
     
-    };
+    }
+
 
 };
 

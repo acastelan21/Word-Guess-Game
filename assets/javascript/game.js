@@ -57,6 +57,10 @@ document.onkeyup = function (event) {
     if ((drake[0] === "D") && (drake[1] === "R") && (drake[2] === "A") && (drake[3] === "K") && (drake[4] === "E")) {
         alert("YOU WON!")
     }
+
+    if (lettersGuessed.length > 6){
+        alert("YOU LOSE!")
+    }
     else {
         lettersGuessed.push(event.key);
         document.getElementById("lettersGuessedSection").innerHTML = lettersGuessed;

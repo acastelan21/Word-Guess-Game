@@ -32,28 +32,35 @@ document.onkeyup = function (event) {
         document.getElementById("clickToStart").innerHTML = drake.join(" ")
 
     }
-    
-    if (letterPressed === "r") {
+
+    else if (letterPressed === "r") {
         drake[1] = "R";
         document.getElementById("clickToStart").innerHTML = drake.join(" ")
 
-    };
+    }
 
-    if (letterPressed === "a") {
+    else if (letterPressed === "a") {
         drake[2] = "A";
         document.getElementById("clickToStart").innerHTML = drake.join(" ")
 
     }
-    if (letterPressed === "k") {
+
+    else if (letterPressed === "k") {
         drake[3] = "K";
         document.getElementById("clickToStart").innerHTML = drake.join(" ")
 
     }
-    if (letterPressed === "e") {
+    else if (letterPressed === "e") {
         drake[4] = "E";
         document.getElementById("clickToStart").innerHTML = drake.join(" ")
 
     }
+else {
+    lettersGuessed.push(event.key);
+        document.getElementById("lettersGuessedSection").innerHTML = lettersGuessed;
+    
+}
+
     if ((drake[0] === "D") && (drake[1] === "R") && (drake[2] === "A") && (drake[3] === "K") && (drake[4] === "E")) {
         alert("YOU WON!")
     }
@@ -61,14 +68,12 @@ document.onkeyup = function (event) {
     if (lettersGuessed.length > 6){
         alert("YOU LOSE!")
     }
-    else {
-        lettersGuessed.push(event.key);
-        document.getElementById("lettersGuessedSection").innerHTML = lettersGuessed;
     
-    }
 
 
 };
+
+
 
 
 

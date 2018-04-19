@@ -1,4 +1,4 @@
-// Establish Words (needs to be D.R.Y)
+// Establish Words 
 var drake = ["_", "_", "_", "_", "_"];
 
 var fallOutBoy = ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_"];
@@ -62,11 +62,14 @@ else {
 }
 
     if ((drake[0] === "D") && (drake[1] === "R") && (drake[2] === "A") && (drake[3] === "K") && (drake[4] === "E")) {
-        alert("YOU WON!")
+        document.getElementById("winLossSection").innerHTML = "YOU WIN!" 
+    //ADD PLAY AGAIN PROMPT IN HTML
     }
 
     if (lettersGuessed.length > 6){
-        alert("YOU LOSE!")
+        document.getElementById("winLossSection").innerHTML = "YOU LOSE!"
+    //ADD PLAY AGAIN PROMPT IN HTML 
+
     }
     
 

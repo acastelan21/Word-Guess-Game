@@ -185,4 +185,6 @@ if (randomClue = rhcp) {
 
 
 
-
+//issues trouble 
+//get only one clue to show at a time 
+//stop wins to keep going up with every new guess 

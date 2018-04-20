@@ -10,7 +10,7 @@ var lettersGuessed = [];
 var wins = 1;
 var clues = [drake, fallOutBoy, rhcp,];
 var randomClue = clues[Math.floor(Math.random() * clues.length)];
-
+var losses =1;
 //keypress record 
 document.onkeyup = function (event) {
     var letterPressed = event.key.toLowerCase();
@@ -21,8 +21,19 @@ document.onkeyup = function (event) {
 };
 document.onkeyup = function (event) {
 var letterPressed = event.key.toLowerCase()
-if (randomClue = drake)  {
-    
+
+if (randomClue = drake) {
+    drakeClue()
+}
+if(randomClue = fallOutBoy){
+    fallOutBoyClue()
+}
+if(randomClue = rhcp){
+    rhcp()
+}
+function drakeClue(){
+
+
     if (letterPressed === "d") {
         drake[0] = "D";
         document.getElementById("keyToStart").innerHTML = drake.join(" ")
@@ -65,10 +76,12 @@ if (randomClue = drake)  {
 
     if (lettersGuessed.length > 6) {
         document.getElementById("winLossSection").innerHTML = "YOU LOSE!"
+        document.getElementById("LossTracker").innerHTML = ("Loses: " + losses++)
     }
-}
+    }
 
-if (randomClue = rhcp) {
+}
+function rhcp(){
 
     if (letterPressed === "r") {
         rhcp[0] = "R";
@@ -110,8 +123,9 @@ if (randomClue = rhcp) {
         document.getElementById("winLossSection").innerHTML = "YOU LOSE!"
     
 
+} 
+function fallOutBoy(){
 
-} {}{if (randomClue = fallOutBoy) {
     if (letterPressed === "f") {
         fallOutBoy[0] = "F";
         document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
@@ -170,6 +184,7 @@ if (randomClue = rhcp) {
 
     }
 
+
     if ((fallOutBoy[0] === "F") && (fallOutBoy[1] === "A") && (fallOutBoy[2] === "L") && (fallOutBoy[3] === "L") && (fallOutBoy[4] === "O") && (fallOutBoy[5] === "U") && (fallOutBoy[6] === "T") && (fallOutBoy[7] === "B") && (fallOutBoy[8] === "O") && (fallOutBoy[9] === "Y")) {
         document.getElementById("winLossSection").innerHTML = "YOU WIN!";
         document.getElementById("winTracker").innerHTML = ("Wins: " + wins++);
@@ -179,9 +194,8 @@ if (randomClue = rhcp) {
     if (lettersGuessed.length > 6) {
         document.getElementById("winLossSection").innerHTML = "YOU LOSE!"
     }
-
-}}
-}}
+}
+}
 
 
 

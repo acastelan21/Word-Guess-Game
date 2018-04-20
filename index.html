@@ -12,14 +12,17 @@
 <!--Header-->
 <header>Word Guess Game</header>
 <br>
-<p1 id="clickToStart" onclick = "myWords()"> Click Here to Start </p1>
+<p1 id="keyToStart" onkeyup = "myWords()"> Press any key to begin game </p1>
 <br>
 <p2>Letters Guessed</p2> 
 <br>
 <p3 id="lettersGuessedSection">These Letters Have Been Guessed</p3>
 <br>
 <p4 id="winLossSection"></p4>
+<br>
+<p5 id="winTracker">Wins: </p5>
 <body>
+
     <!--Container for whole game-->
     <div class="container">
         <!--Clue section that will have to change when new game happens-->

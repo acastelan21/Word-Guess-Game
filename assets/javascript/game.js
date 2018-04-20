@@ -9,14 +9,14 @@ var theChainsmokers = ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_
 
 var thomasRhett = ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"];
 
-var lettersGuessed = []
-
+var lettersGuessed = [];
+var wins = 1;
 //get random word
 
 
 // Select var 1
 function myWords() {
-    document.getElementById("clickToStart").innerHTML = drake.join(" ");
+    document.getElementById("keyToStart").innerHTML = drake.join(" ");
 
 }
 
@@ -29,30 +29,30 @@ document.onkeyup = function (event) {
     
     if (letterPressed === "d") {
         drake[0] = "D";
-        document.getElementById("clickToStart").innerHTML = drake.join(" ")
+        document.getElementById("keyToStart").innerHTML = drake.join(" ")
 
     }
 
     else if (letterPressed === "r") {
         drake[1] = "R";
-        document.getElementById("clickToStart").innerHTML = drake.join(" ")
+        document.getElementById("keyToStart").innerHTML = drake.join(" ")
 
     }
 
     else if (letterPressed === "a") {
         drake[2] = "A";
-        document.getElementById("clickToStart").innerHTML = drake.join(" ")
+        document.getElementById("keyToStart").innerHTML = drake.join(" ")
 
     }
 
     else if (letterPressed === "k") {
         drake[3] = "K";
-        document.getElementById("clickToStart").innerHTML = drake.join(" ")
+        document.getElementById("keyToStart").innerHTML = drake.join(" ")
 
     }
     else if (letterPressed === "e") {
         drake[4] = "E";
-        document.getElementById("clickToStart").innerHTML = drake.join(" ")
+        document.getElementById("keyToStart").innerHTML = drake.join(" ")
 
     }
 else {
@@ -62,7 +62,8 @@ else {
 }
 
     if ((drake[0] === "D") && (drake[1] === "R") && (drake[2] === "A") && (drake[3] === "K") && (drake[4] === "E")) {
-        document.getElementById("winLossSection").innerHTML = "YOU WIN!" 
+        document.getElementById("winLossSection").innerHTML = "YOU WIN!";
+        document.getElementById("winTracker").innerHTML = ("Wins: " + wins++);
     //ADD PLAY AGAIN PROMPT IN HTML
     }
 
@@ -75,14 +76,3 @@ else {
 
 
 };
-
-
-
-
-
-
-
-
-
-
-

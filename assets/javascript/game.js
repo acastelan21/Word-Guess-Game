@@ -1,204 +1,167 @@
 // Establish Words 
-var drake = ["_", "_", "_", "_", "_"];
+var words = ["drake", "rhcp", "falloutboy", "thechainsmokers", "thomasrhett"];
 
-var fallOutBoy = ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_"];
+//create vars for letters guessed, wins, guesses left, losses
+var wrongLetters = [];
+var wins = 0;
+var guessesLeft = 12;
+var losses = 0;
+var lettersChosenWord = [];
+var numOfBlanks = [];
+var blanksAndSuccesses = [];
+var chosenWord = "";
+var letterGuessed = "";
+//reset 
+function reset() {
+    guessesLeft = 12;
+    //choose random word
+    chosenWord = words[Math.floor(Math.random() * words.length)];
+    //picks a word and writes to document
+    document.getElementById("currentWord").innerHTML = chosenWord;
+    //splits words into single letters 
+    lettersChosenWord = chosenWord.split("");
+    // assigns the number of letters in a word
+    numOfBlanks = lettersChosenWord.length;
+    //reset blanks
+    blanksAndSuccesses = [];
+    //resets wrong letters in game when reset
+    wrongLetters = [];
+    //creates blanks for every word in array (loops the array)
+    for (var i = 0; i < numOfBlanks; i++) {
+        blanksAndSuccesses.push("_");
+    }
+        
+        //write guesses left
+        document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guessesLeft;
 
-var rhcp = ["_", "_", "_", "_"];
+        //writes the blanks made with push in for loop 
+        document.getElementById("currentWord").innerHTML = blanksAndSuccesses.join(" ");
+      
+        //gets rid of missed letters 
+        document.getElementById("lettersGuessed").innerHTML = wrongLetters.join(" ");
+        //writes current wins 
+        
+}
 
 
-var lettersGuessed = [];
-var wins = 1;
-var clues = [drake, fallOutBoy, rhcp,];
-var randomClue = clues[Math.floor(Math.random() * clues.length)];
-var losses =1;
-//keypress record 
-document.onkeyup = function (event) {
-    var letterPressed = event.key.toLowerCase();
-    if (event.keyCode ===13) {
-        document.getElementById("keyToStart").innerHTML = randomClue.join(" ");
-    };
+function checkLetters (letter) {
+    //check letter to false
+    var letterInWord = false;
+
+    // for loop that checks if letter is word .
+    for (var i = 0; i < numOfBlanks; i++) {
+  
+      if (chosenWord[i] === letter) {
+  
+        // if letter is in word thatn lettinInWord becomes true 
+        letterInWord = true;
+      }
+    }
+
+    //make conditions and check 
+
+if (letterInWord) {
+    //loop to check if letter is indeed in word
+    for (var j = 0; j < numOfBlanks; j++){
+        // if letter is index j is word then add to blanks and successes array. 
+        if (chosenWord[j] === letter){
+            blanksAndSuccesses[j] = letter;
+        }
+    }
+}
+        //if letter not in word add the wrong letters array
+        else {
+            wrongLetters.push(letter);
+            //subract guesses left
+            guessesLeft--;
+        }
+}
     
+
+
+
+function roundComplete() {
+  // First, log an initial status update in the console
+  // telling us how many wins, losses, and guesses are left.
+ 
+
+  // Update the HTML to reflect the new number of guesses.
+  document.getElementById("guessesLeft").innerHTML = guessesLeft;
+
+  // This will print the array of guesses and blanks onto the page.
+  document.getElementById("currentWord").innerHTML = blanksAndSuccesses.join(" ");
+
+  // This will print the wrong guesses onto the page.
+  document.getElementById("lettersGuessed").innerHTML = wrongLetters.join(" ");
+
+  // If our Word Guess string equals the solution.
+  // (meaning that we guessed all the letters to match the solution)...
+  if (lettersChosenWord.toString() === blanksAndSuccesses.toString()) {
+
+    // Add to the win counter
+    wins++;
+
+    // Give the user an alert
+    alert("You win!");
+
+    // Update the win counter in the HTML
+    document.getElementById("wins").innerHTML = "Wins: " + wins;
+
+    // Restart the game
+    reset();
+  }
+
+  // If we've run out of guesses
+  else if (guessesLeft === 0) {
+
+    // Add to the loss counter
+    losses++;
+
+    // Give the user an alert
+    alert("You lose");
+
+    // Update the loss counter in the HTML
+    document.getElementById("losses").innerHTML = "Loses: " + losses;
+
+    // Restart the game
+    reset();
+
+  }
+
+}
+
+// MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
+// ==================================================================
+
+// Starts the Game by running the startGame() function
+reset();
+
+// Then initiates the function for capturing key clicks.
+document.onkeyup = function(event) {
+
+  // Converts all key clicks to lowercase letters.
+  letterGuessed = String.fromCharCode(event.which).toLowerCase();
+
+  // Runs the code to check for correct guesses.
+  checkLetters(letterGuessed);
+
+  // Runs the code that ends each round.
+  roundComplete();
 };
-document.onkeyup = function (event) {
-var letterPressed = event.key.toLowerCase()
-
-if (randomClue = drake) {
-    drakeClue()
-}
-if(randomClue = fallOutBoy){
-    fallOutBoyClue()
-}
-if(randomClue = rhcp){
-    rhcp()
-}
-function drakeClue(){
-
-
-    if (letterPressed === "d") {
-        drake[0] = "D";
-        document.getElementById("keyToStart").innerHTML = drake.join(" ")
-
-    }
-
-    else if (letterPressed === "r") {
-        drake[1] = "R";
-        document.getElementById("keyToStart").innerHTML = drake.join(" ")
-
-    }
-
-    else if (letterPressed === "a") {
-        drake[2] = "A";
-        document.getElementById("keyToStart").innerHTML = drake.join(" ")
-
-    }
-
-    else if (letterPressed === "k") {
-        drake[3] = "K";
-        document.getElementById("keyToStart").innerHTML = drake.join(" ")
-
-    }
-    else if (letterPressed === "e") {
-        drake[4] = "E";
-        document.getElementById("keyToStart").innerHTML = drake.join(" ")
-
-    }
-    else {
-        lettersGuessed.push(event.key);
-        document.getElementById("lettersGuessedSection").innerHTML = lettersGuessed;
-
-    }
-
-    if ((drake[0] === "D") && (drake[1] === "R") && (drake[2] === "A") && (drake[3] === "K") && (drake[4] === "E")) {
-        document.getElementById("winLossSection").innerHTML = "YOU WIN!";
-        document.getElementById("winTracker").innerHTML = ("Wins: " + wins++);
-        //ADD PLAY AGAIN PROMPT IN HTML
-    }
-
-    if (lettersGuessed.length > 6) {
-        document.getElementById("winLossSection").innerHTML = "YOU LOSE!"
-        document.getElementById("LossTracker").innerHTML = ("Loses: " + losses++)
-    }
-    }
-
-}
-function rhcp(){
-
-    if (letterPressed === "r") {
-        rhcp[0] = "R";
-        document.getElementById("keyToStart").innerHTML = rhcp.join(" ")
-
-    }
-
-    else if (letterPressed === "h") {
-        rhcp[1] = "H";
-        document.getElementById("keyToStart").innerHTML = rhcp.join(" ")
-
-    }
-
-    else if (letterPressed === "c") {
-        rhcp[2] = "C";
-        document.getElementById("keyToStart").innerHTML = rhcp.join(" ")
-
-    }
-
-    else if (letterPressed === "p") {
-        rhcp[3] = "P";
-        document.getElementById("keyToStart").innerHTML = rhcp.join(" ")
-
-    }
-
-    else {
-        lettersGuessed.push(event.key);
-        document.getElementById("lettersGuessedSection").innerHTML = lettersGuessed;
-
-    }
-
-    if ((rhcp[0] === "R") && (rhcp[1] === "H") && (rhcp[2] === "C") && (rhcp[3] === "P")) {
-        document.getElementById("winLossSection").innerHTML = "YOU WIN!";
-        document.getElementById("winTracker").innerHTML = ("Wins: " + wins++);
-
-    }
-
-    if (lettersGuessed.length > 6) {
-        document.getElementById("winLossSection").innerHTML = "YOU LOSE!"
-    
-
-} 
-function fallOutBoy(){
-
-    if (letterPressed === "f") {
-        fallOutBoy[0] = "F";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-
-    else if (letterPressed === "a") {
-        fallOutBoy[1] = "A";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-
-    else if (letterPressed === "l") {
-        fallOutBoy[2] = "L";
-        fallOutBoy[3] = "L";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-
-
-    else if (letterPressed === "o") {
-        fallOutBoy[4] = "O";
-        fallOutBoy[8] = "O";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-    else if (letterPressed === "u") {
-        fallOutBoy[5] = "U";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-    else if (letterPressed === "t") {
-        fallOutBoy[6] = "T";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-
-    else if (letterPressed === "b") {
-        fallOutBoy[7] = "B";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-    else if (letterPressed === "o") {
-        fallOutBoy[8] = "O";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-    else if (letterPressed === "y") {
-        fallOutBoy[9] = "Y";
-        document.getElementById("keyToStart").innerHTML = fallOutBoy.join(" ")
-
-    }
-    else {
-        lettersGuessed.push(event.key);
-        document.getElementById("lettersGuessedSection").innerHTML = lettersGuessed;
-
-    }
-
-
-    if ((fallOutBoy[0] === "F") && (fallOutBoy[1] === "A") && (fallOutBoy[2] === "L") && (fallOutBoy[3] === "L") && (fallOutBoy[4] === "O") && (fallOutBoy[5] === "U") && (fallOutBoy[6] === "T") && (fallOutBoy[7] === "B") && (fallOutBoy[8] === "O") && (fallOutBoy[9] === "Y")) {
-        document.getElementById("winLossSection").innerHTML = "YOU WIN!";
-        document.getElementById("winTracker").innerHTML = ("Wins: " + wins++);
-        //ADD PLAY AGAIN PROMPT IN HTML
-    }
-
-    if (lettersGuessed.length > 6) {
-        document.getElementById("winLossSection").innerHTML = "YOU LOSE!"
-    }
-}
-}
 
 
 
-//issues trouble 
-//get only one clue to show at a time 
-//stop wins to keep going up with every new guess 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

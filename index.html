@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
     <title>Word Guess Game</title>
 </head>
 <body>
@@ -16,20 +16,26 @@
 <header>Word Guess Game</header>
 <!--instructions-->
 <div id="instructions">Press any key to start</div>
-<!--wins section-->
-<div id="wins">Wins: 0</div>
-<div id="losses">Loses: 0</div>
 <!--clue (image)-->
 <div id="clue"></div>
-<!--Current Word-->
 <div id="currentWord"></div>
+<!--wins/losses section-->
+<div class="scoreBoard">
+<div id="wins">Wins: 0</div>
+<div id="losses">Loses: 0</div>
+</div>
 <!--Guesses left-->
 <div id="guessesLeft">Guesses Left: 12</div>
+
+<!--Current Word-->
+
+
 <!--letters guessedd -->
-<div>Letters Guessed</div>
+<div class="lettersGuessed">Letters Guessed:
     <div id="lettersGuessed"></div>
 
     </div>
+</div>
 </body>
 <script src="assets/javascript/game.js"></script>
 </html>

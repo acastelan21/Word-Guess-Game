@@ -1,0 +1,78 @@
+body {
+    background-image: url(../images/mic3.png);
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    font-size: 24px;
+    color: azure;
+    font-family: "Comfortaa","Inconsolata", cursive;
+    text-align: center; 
+}
+.gameContainer{
+   margin:auto;
+    width: 960px;
+    
+}
+
+header {
+    border-radius: 5px; 
+    background: #8C2444;
+    padding:10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width:500px;
+
+}
+
+#instructions {
+    border-radius: 5px; 
+    background: #CDBB99;
+    padding:10px;
+    margin-bottom: 15px;
+    width:500px;
+}
+
+.scoreBoard {
+    
+    border-radius: 5px; 
+    background: #411a41;
+    padding:20px;
+    margin-bottom: 15px;
+    width: 480px;
+}
+
+#clue {
+    border-radius: 5px; 
+    background: #411a41;
+    padding:20px;
+    margin-bottom: 15px;
+    width:480px; 
+}
+
+#currentWord {
+
+    border-radius: 5px; 
+    background: #CDBB99;
+    padding:20px;
+    margin-bottom: 15px;
+    width: 480px;
+
+}
+#guessesLeft{
+    
+    border-radius: 5px; 
+    background: #CDBB99;
+    padding:20px;
+    margin-bottom: 15px;
+    width: 480px;
+    height:48px;
+   
+}
+.lettersGuessed {
+    
+    border-radius: 5px; 
+    background: #411a41;
+    padding:20px;
+    margin-bottom: 15px;
+    width:480px;
+}
+

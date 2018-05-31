@@ -18,6 +18,22 @@ function reset() {
     chosenWord = words[Math.floor(Math.random() * words.length)];
     //picks a word and writes to document
     document.getElementById("currentWord").innerHTML = chosenWord;
+
+    if (chosenWord === "drake" ){
+        var elem = document.createElement("img");
+      elem.setAttribute("src", "./assets/images/drakeGif.gif");
+      elem.setAttribute("height", "200");
+      elem.setAttribute("width", "200");
+      document.getElementById("clue").appendChild(elem);
+    };
+    if (chosenWord=== "rhcp" ){
+        var elem = document.createElement("img");
+      elem.setAttribute("src", "./assets/images/rhcpGif.gif");
+      elem.setAttribute("height", "200");
+      elem.setAttribute("width", "200");
+      document.getElementById("clue").appendChild(elem);
+    };
+
     //splits words into single letters 
     lettersChosenWord = chosenWord.split("");
     // assigns the number of letters in a word
@@ -104,8 +120,10 @@ function roundComplete() {
     // Give the user an alert
     alert("You win!");
 
+
     // Update the win counter in the HTML
     document.getElementById("wins").innerHTML = "Wins: " + wins;
+    document.getElementById("clue").innerHTML ="";
 
     // Restart the game
     reset();

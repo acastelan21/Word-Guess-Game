@@ -13,93 +13,113 @@ var chosenWord = "";
 var letterGuessed = "";
 //reset 
 function reset() {
-    guessesLeft = 12;
-    //choose random word
-    chosenWord = words[Math.floor(Math.random() * words.length)];
-    //picks a word and writes to document
-    document.getElementById("currentWord").innerHTML = chosenWord;
+  guessesLeft = 12;
+  //choose random word
+  chosenWord = words[Math.floor(Math.random() * words.length)];
+  //picks a word and writes to document
+  document.getElementById("currentWord").innerHTML = chosenWord;
 
-    if (chosenWord === "drake" ){
-        var elem = document.createElement("img");
-      elem.setAttribute("src", "./assets/images/drakeGif.gif");
-      elem.setAttribute("height", "200");
-      elem.setAttribute("width", "200");
-      document.getElementById("clue").appendChild(elem);
-    };
-    if (chosenWord=== "rhcp" ){
-        var elem = document.createElement("img");
-      elem.setAttribute("src", "./assets/images/rhcpGif.gif");
-      elem.setAttribute("height", "200");
-      elem.setAttribute("width", "200");
-      document.getElementById("clue").appendChild(elem);
-    };
+  if (chosenWord === "drake") {
+    var elem = document.createElement("img");
+    elem.setAttribute("src", "./assets/images/drakeGif.gif");
+    elem.setAttribute("height", "200");
+    elem.setAttribute("width", "200");
+    document.getElementById("clue").appendChild(elem);
+  };
+  if (chosenWord === "rhcp") {
+    var elem = document.createElement("img");
+    elem.setAttribute("src", "./assets/images/rhcpGif.gif");
+    elem.setAttribute("height", "200");
+    elem.setAttribute("width", "200");
+    document.getElementById("clue").appendChild(elem);
+  };
+  if (chosenWord === "falloutboy") {
+    var elem = document.createElement("img");
+    elem.setAttribute("src", "./assets/images/falloutboyzGif.gif");
+    elem.setAttribute("height", "200");
+    elem.setAttribute("width", "200");
+    document.getElementById("clue").appendChild(elem);
+  };
+  if (chosenWord === "thechainsmokers") {
+    var elem = document.createElement("img");
+    elem.setAttribute("src", "./assets/images/thechainsmokersGif.gif");
+    elem.setAttribute("height", "200");
+    elem.setAttribute("width", "200");
+    document.getElementById("clue").appendChild(elem);
+  };
+  if (chosenWord === "thomasrhett") {
+    var elem = document.createElement("img");
+    elem.setAttribute("src", "./assets/images/thomasRhettGif.gif");
+    elem.setAttribute("height", "200");
+    elem.setAttribute("width", "200");
+    document.getElementById("clue").appendChild(elem);
+  };
+  //splits words into single letters 
+  lettersChosenWord = chosenWord.split("");
+  // assigns the number of letters in a word
+  numOfBlanks = lettersChosenWord.length;
+  //reset blanks
+  blanksAndSuccesses = [];
+  //resets wrong letters in game when reset
+  wrongLetters = [];
+  //creates blanks for every word in array (loops the array)
+  for (var i = 0; i < numOfBlanks; i++) {
+    blanksAndSuccesses.push("_");
+  }
 
-    //splits words into single letters 
-    lettersChosenWord = chosenWord.split("");
-    // assigns the number of letters in a word
-    numOfBlanks = lettersChosenWord.length;
-    //reset blanks
-    blanksAndSuccesses = [];
-    //resets wrong letters in game when reset
-    wrongLetters = [];
-    //creates blanks for every word in array (loops the array)
-    for (var i = 0; i < numOfBlanks; i++) {
-        blanksAndSuccesses.push("_");
-    }
-        
-        //write guesses left
-        document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guessesLeft;
+  //write guesses left
+  document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guessesLeft;
 
-        //writes the blanks made with push in for loop 
-        document.getElementById("currentWord").innerHTML = blanksAndSuccesses.join(" ");
-      
-        //gets rid of missed letters 
-        document.getElementById("lettersGuessed").innerHTML = wrongLetters.join(" ");
-        //writes current wins 
-        
+  //writes the blanks made with push in for loop 
+  document.getElementById("currentWord").innerHTML = blanksAndSuccesses.join(" ");
+
+  //gets rid of missed letters 
+  document.getElementById("lettersGuessed").innerHTML = wrongLetters.join(" ");
+  //writes current wins 
+
 }
 
 
-function checkLetters (letter) {
-    //check letter to false
-    var letterInWord = false;
+function checkLetters(letter) {
+  //check letter to false
+  var letterInWord = false;
 
-    // for loop that checks if letter is word .
-    for (var i = 0; i < numOfBlanks; i++) {
-  
-      if (chosenWord[i] === letter) {
-  
-        // if letter is in word thatn lettinInWord becomes true 
-        letterInWord = true;
+  // for loop that checks if letter is word .
+  for (var i = 0; i < numOfBlanks; i++) {
+
+    if (chosenWord[i] === letter) {
+
+      // if letter is in word thatn lettinInWord becomes true 
+      letterInWord = true;
+    }
+  }
+
+  //make conditions and check 
+
+  if (letterInWord) {
+    //loop to check if letter is indeed in word
+    for (var j = 0; j < numOfBlanks; j++) {
+      // if letter is index j is word then add to blanks and successes array. 
+      if (chosenWord[j] === letter) {
+        blanksAndSuccesses[j] = letter;
       }
     }
-
-    //make conditions and check 
-
-if (letterInWord) {
-    //loop to check if letter is indeed in word
-    for (var j = 0; j < numOfBlanks; j++){
-        // if letter is index j is word then add to blanks and successes array. 
-        if (chosenWord[j] === letter){
-            blanksAndSuccesses[j] = letter;
-        }
-    }
+  }
+  //if letter not in word add the wrong letters array
+  else {
+    wrongLetters.push(letter);
+    //subract guesses left
+    guessesLeft--;
+  }
 }
-        //if letter not in word add the wrong letters array
-        else {
-            wrongLetters.push(letter);
-            //subract guesses left
-            guessesLeft--;
-        }
-}
-    
+
 
 
 
 function roundComplete() {
   // First, log an initial status update in the console
   // telling us how many wins, losses, and guesses are left.
- 
+
 
   // Update the HTML to reflect the new number of guesses.
   document.getElementById("guessesLeft").innerHTML = guessesLeft;
@@ -123,7 +143,7 @@ function roundComplete() {
 
     // Update the win counter in the HTML
     document.getElementById("wins").innerHTML = "Wins: " + wins;
-    document.getElementById("clue").innerHTML ="";
+    document.getElementById("clue").innerHTML = "";
 
     // Restart the game
     reset();
@@ -155,7 +175,7 @@ function roundComplete() {
 reset();
 
 // Then initiates the function for capturing key clicks.
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
 
   // Converts all key clicks to lowercase letters.
   letterGuessed = String.fromCharCode(event.which).toLowerCase();
@@ -166,20 +186,3 @@ document.onkeyup = function(event) {
   // Runs the code that ends each round.
   roundComplete();
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
